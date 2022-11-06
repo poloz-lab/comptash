@@ -1,0 +1,1 @@
+SELECT op_typ_id AS 'ID', op_typ_libelle AS 'Libellé', cat_nom AS 'Catégorie' FROM OperationTypes NATURAL JOIN Categories ORDER BY op_typ_libelle ASC;
