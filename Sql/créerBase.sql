@@ -1,0 +1,41 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "RecurrentOccurences" (
+	"rec_occ_id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"rec_typ_id"	INTEGER NOT NULL,
+	"rec_occ_montant"	REAL NOT NULL,
+	"rec_occ_mois"	INTEGER NOT NULL,
+	FOREIGN KEY("rec_typ_id") REFERENCES "RecurrentTypes"("rec_typ_id") ON UPDATE CASCADE
+);
+CREATE TABLE IF NOT EXISTS "OperationOccurences" (
+	"op_occ_id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"op_typ_id"	INTEGER,
+	"op_occ_montant"	REAL NOT NULL,
+	"op_occ_date"	INTEGER NOT NULL,
+	"op_occ_part"	REAL NOT NULL DEFAULT 1,
+	"op_occ_commentaire"	TEXT,
+	FOREIGN KEY("op_typ_id") REFERENCES "OperationTypes"("op_typ_id") ON DELETE SET NULL ON UPDATE CASCADE
+);
+CREATE TABLE IF NOT EXISTS "RecurrentTypes" (
+	"rec_typ_id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"rec_typ_libelle"	TEXT NOT NULL UNIQUE,
+	"cat_id"	INTEGER,
+	FOREIGN KEY("cat_id") REFERENCES "Categories"("cat_id") ON DELETE SET NULL ON UPDATE CASCADE
+);
+CREATE TABLE IF NOT EXISTS "OperationTypes" (
+	"op_typ_id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"op_typ_libelle"	TEXT NOT NULL UNIQUE,
+	"cat_id"	INTEGER,
+	FOREIGN KEY("cat_id") REFERENCES "Categories"("cat_id") ON DELETE SET NULL ON UPDATE CASCADE
+);
+CREATE TABLE IF NOT EXISTS "Budgets" (
+	"bu_id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"cat_id"	INTEGER NOT NULL,
+	"bu_montant"	REAL NOT NULL DEFAULT 0,
+	"bu_mois"	INTEGER NOT NULL DEFAULT 'DATE(''start of month'')',
+	FOREIGN KEY("cat_id") REFERENCES "Categories"("cat_id") ON UPDATE CASCADE
+);
+CREATE TABLE IF NOT EXISTS "Categories" (
+	"cat_id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"cat_nom"	TEXT NOT NULL UNIQUE
+);
+COMMIT;
