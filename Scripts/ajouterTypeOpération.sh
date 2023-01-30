@@ -30,11 +30,11 @@ then
     exit 2
 fi
 
-# On sépare les informations de la requête, pour pouvoir afficher l'id trouvé et le nom complet du type
+# On sépare les informations de la requête, pour pouvoir afficher l'id trouvé et le nom complet de la catégorie
 cat_id=`echo "${resulat}" | cut -d '|' -f 1`
 cat_nom=`echo "${resulat}" | cut -d '|' -f 2`
 
-echo "Type d'opération trouvé : id ${cat_id} pour '${cat_nom}'"
+echo "Catégorie trouvée : id ${cat_id} pour '${cat_nom}'"
 
 # Requête d'insertion
 sqlite3 -echo "${CHEMIN_BASE_COMPTABILITE}" "INSERT INTO OperationTypes (op_typ_libelle,cat_id) VALUES (\"${1}\", ${cat_id});"
