@@ -16,6 +16,6 @@ then
 fi
 
 # Requête
-sqlite3 -header "${CHEMIN_BASE_COMPTABILITE}" "SELECT rec_typ_id,rec_typ_libelle FROM RecurrentTypes WHERE op_typ_libelle LIKE '%${1}%' ORDER BY op_typ_libelle ASC;"
+sqlite3 -header "${CHEMIN_BASE_COMPTABILITE}" "SELECT rec_typ_id,rec_typ_libelle FROM RecurrentTypes WHERE rec_typ_libelle LIKE '%${1}%' ORDER BY rec_typ_libelle ASC;"
 
 exit 0
