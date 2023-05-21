@@ -137,6 +137,10 @@ Il est possible d'afficher les opérations du mois courant :
 
 `CHEMIN_BASE_COMPTABILITE='chemin/vers/base.sqlite' Scripts/afficherMoisRécurrent.sh`
 
+Ou bien toutes les opérations récurrentes :
+
+`CHEMIN_BASE_COMPTABILITE='chemin/vers/base.sqlite' Scripts/afficherToutRécurrent.sh`
+
 ### Budgets
 
 Un système de budgets qui comporte des objectifs pour le mois et un résumé des mouvements par catégorie est en cours de développement.
